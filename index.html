@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuickClinic</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main>
+      <!--Nav bar -->
+      <header>
+        <nav class="navbar">
+          <h1 class="logo" style="font-weight: 200">QuickClinic</h1>
+          <button id="theme-toggle-btn">🌓 Toggle Theme</button>
+
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#Sym">Symptoms Checker</a></li>
+            <li><a href="#find-doctor">Find Doctor</a></li>
+            <li><a href="#about">About</a></li>
+          </ul>
+        </nav>
+        <div class="overlay" id="overlay"></div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-text" style="position: relative">
+          <h1>Healthcare at Your Fingertips</h1>
+          <p>
+            Instantly check symptoms, find doctors, and get pre-diagnosis
+            powered by AI.
+          </p>
+          <a href="#" id="start-btn" class="btn">Start Diagnosis</a>
+          <div
+            class="text-highlighted"
+            style="position: absolute; top: 100%; left: 2%"
+          >
+            <h1 style="width: 20%; font-size: 5rem; line-height: 0.6">
+              Check. Connect. Cure.
+            </h1>
+          </div>
+        </div>
+      </section>
+      <div class="line"></div>
+
+      <!-- Symptom Checker -->
+      <section id="Sym" class="symptom-checker">
+        <div class="container">
+          <h2>Check Your Symptoms</h2>
+          <p>Enter your symptoms to get a quick AI-based pre-diagnosis.</p>
+
+          <form id="symptom-form">
+            <input
+              type="text"
+              id="symptom-input"
+              placeholder="e.g. headache, sore throat"
+              required
+            />
+            <button style="font-size: 1rem" type="submit">Check Now</button>
+          </form>
+
+          <div id="symptom-result" class="result hidden">
+            <!-- Diagnosis result will appear here -->
+          </div>
+        </div>
+      </section>
+
+      <!--Find Doctor -->
+      <section id="find-doctor" class="doctor-section" style="border-bottom: 1px solid #eba25469;">
+        <h2>Find Nearby Doctors🩺</h2>
+        <p style="font-weight: 300; color: #9ba0a8; font-size: 1.03rem">
+          Need professional help? Use the map below or search for doctors
+          related to your symptoms.
+        </p>
+
+        <div class="doctor-map">
+          <iframe
+            id="map-frame"
+            width="100%"
+            height="300"
+            style="border: 0; margin-top: 20px"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+
+        <button
+          style="
+            padding: 0.7rem 1rem;
+            border: none;
+            outline: none;
+            background-color: #eba254;
+            color: #fff;
+            border-radius: 20px;
+            font-size: 1rem;
+            margin-top: 2rem;
+          "
+          id="find-doctor-btn"
+        >
+          🔍 Find Doctors Related to My Symptoms
+        </button>
+      </section>
+
+      <!-- Pabout -->
+      <div id="about" style="position: relative">
+        <h1 style="color: #eba254; font-weight: 200; position: absolute; left: 33.9%; top: 10%; font-size: 3rem;">
+          About
+        </h1>
+        <div
+          class="P1"
+          style="
+            position: absolute;
+            top: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+           
+            width: 100%;
+            padding: 1rem 1rem;
+            background-color: #eba254;
+            color: #000;
+          "
+        >
+          <img
+            src="assets/image/hands.avif"
+            style="
+              width: 150px;
+              height: 50px;
+              object-fit: cover;
+              border-radius: 30px;
+            "
+            alt=""
+          />
+          <h1
+            style="
+              font-weight: 200;
+              color: #000000;
+              white-space: nowrap;
+              font-size: 2rem;
+            "
+          >
+            AI Powered.
+          </h1>
+        </div>
+        <div
+          class="P2"
+          style="
+            position: absolute;
+            top: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            width: 100%;
+            background-color: #eba254;
+            padding: 1rem 1rem;
+            
+          "
+        >
+          <h1
+            style="
+              font-weight: 200;
+              color: #000000;
+              white-space: nowrap;
+              font-size: 2rem;
+            "
+          >
+            Health Support.
+          </h1>
+
+          <img
+            src="assets/image/photo-1670381225856-997d3eea46df.avif"
+            style="
+              width: 100px;
+              height: 50px;
+              object-fit: cover;
+              border-radius: 30px;
+            "
+            alt=""
+          />
+        </div>
+        <p style="
+        position: absolute;
+        top: 73%;
+        font-size: 1.03rem;
+        text-align: center;
+        color: #eba254;
+        font-weight: 370;
+        padding: 1rem 1rem;
+        ">
+          QuickClinic is your AI-powered companion for faster health support. 
+          From symptom analysis to locating nearby doctors and pharmacies, 
+          it’s your pocket medical assistant.
+        </p>
+      </div>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <h3>QuickClinic 🏥</h3>
+            <p>
+              Your smart assistant for finding doctors, understanding symptoms,
+              and locating nearby pharmacies.
+            </p>
+          </div>
+
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#Sym">Symptom Checker</a></li>
+              <li><a href="#find-doctor">Find Doctors</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>Github : iparesh18</p>
+            <p>Balaghat, MP - India</p>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <p>© 2025 QuickClinic. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
