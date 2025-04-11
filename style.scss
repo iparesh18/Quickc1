@@ -348,8 +348,129 @@
   }
   
 
+/* Form styling */
+#review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px;
+}
 
+#review-form input,
+#review-form textarea {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  width: 100%;
+}
+
+#review-form button {
+  background-color: #0070f3;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#review-form button:hover {
+  background-color: #005bb5;
+}
+
+/* Review container */
+#review-list {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Single review card */
+.review {
+
+ 
+  background-color: #eba254;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.review strong {
+  font-size: 16px;
+  color: #fffefe;
+}
+
+.review p {
+  font-size: 14px;
+  color: #000000;
+  margin-top: 6px;
+}
+
+/* Responsive: Tablet and up */
+@media (min-width: 600px) {
+  #review-form,
+  #review-list {
+    max-width: 600px;
+    margin: 40px auto;
+  }
+}
+#review{
+  color: #eba254;
+  font-weight: 200;
+  font-size: 3rem;
+}
+.rev{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* Review slider wrapper */
+.review-slider-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 20px;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Horizontal scrolling container */
+.review-slider {
+  display: flex;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+/* Individual review cards */
+.review {
+  min-width: 220px;
+  background-color: #eba254;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0; /* prevent from shrinking */
+}
+
+.review strong {
+  font-size: 16px;
+  color: #fffefe;
+}
+
+.review p {
+  font-size: 14px;
+  color: #000000;
+  margin-top: 6px;
   
+}
+small{
+
+  padding: .1rem .5rem;
+  border-radius: 30px;
+  background-color: #000;
+}
+
   /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
   /* Desktop View*/

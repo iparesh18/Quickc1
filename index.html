@@ -76,7 +76,11 @@
       </section>
 
       <!--Find Doctor -->
-      <section id="find-doctor" class="doctor-section" style="border-bottom: 1px solid #eba25469;">
+      <section
+        id="find-doctor"
+        class="doctor-section"
+        style="border-bottom: 1px solid #eba25469"
+      >
         <h2>Find Nearby Doctors🩺</h2>
         <p style="font-weight: 300; color: #9ba0a8; font-size: 1.03rem">
           Need professional help? Use the map below or search for doctors
@@ -113,8 +117,17 @@
       </section>
 
       <!-- Pabout -->
-      <div id="about" style="position: relative">
-        <h1 style="color: #eba254; font-weight: 200; position: absolute; left: 33.9%; top: 10%; font-size: 3rem;">
+      <div id="about" style="position: relative; border-bottom: #eba254">
+        <h1
+          style="
+            color: #eba254;
+            font-weight: 200;
+            position: absolute;
+            left: 33.9%;
+            top: 10%;
+            font-size: 3rem;
+          "
+        >
           About
         </h1>
         <div
@@ -125,7 +138,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-           
+
             width: 100%;
             padding: 1rem 1rem;
             background-color: #eba254;
@@ -165,7 +178,6 @@
             width: 100%;
             background-color: #eba254;
             padding: 1rem 1rem;
-            
           "
         >
           <h1
@@ -190,19 +202,44 @@
             alt=""
           />
         </div>
-        <p style="
-        position: absolute;
-        top: 73%;
-        font-size: 1.03rem;
-        text-align: center;
-        color: #eba254;
-        font-weight: 370;
-        padding: 1rem 1rem;
-        ">
-          QuickClinic is your AI-powered companion for faster health support. 
-          From symptom analysis to locating nearby doctors and pharmacies, 
-          it’s your pocket medical assistant.
+        <p
+          style="
+            position: absolute;
+            top: 73%;
+            font-size: 1.03rem;
+            text-align: center;
+            color: #eba254;
+            font-weight: 370;
+            padding: 1rem 1rem;
+          "
+        >
+          QuickClinic is your AI-powered companion for faster health support.
+          From symptom analysis to locating nearby doctors and pharmacies, it’s
+          your pocket medical assistant.
         </p>
+      </div>
+      <!-- Review -->
+      <div class="rev">
+        <h2 id="review">Leave a Review</h2>
+        <form id="review-form">
+          <input type="text" id="name" placeholder="Your name" required />
+          <textarea
+            id="review-text"
+            placeholder="Write your review..."
+            required
+          ></textarea>
+          <button type="submit">Submit Review</button>
+        </form>
+
+        <h2 style="color: #eba254; font-weight: 200; font-size: 1.2rem; text-align: center;">
+          What people are saying about QuickClinic :
+        </h2>
+      <!-- Slider Wrapper -->
+<div class="review-slider-wrapper">
+  <div id="review-slider" class="review-slider"></div>
+</div>
+
+        
       </div>
 
       <footer class="site-footer">
