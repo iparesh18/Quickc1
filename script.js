@@ -175,8 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // form
-const SUPABASE_URL = "https://ojfxbnavshemmsbbprem.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZnhibmF2c2hlbW1zYmJwcmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQyNjEwNjIsImV4cCI6MjA1OTgzNzA2Mn0.jCCyX9Kj2IHUglYC3qE4Oa8N5rDWjYl5247GlnFVrVo"; // okay for public usage
+
 
 document.getElementById("review-form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -189,26 +188,29 @@ document.getElementById("review-form").addEventListener("submit", async (e) => {
     return;
   }
 
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
-    method: "POST",
-    headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-      "Content-Type": "application/json",
-      Prefer: "return=representation"
-    },
-    body: JSON.stringify({ name, text })
-  });
+  try {
+    const res = await fetch("/api/reviews", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, text })
+    });
 
-  if (res.ok) {
-    alert("✅ Review submitted!");
-    document.getElementById("review-form").reset();
-    loadReviews(); // refresh
-  } else {
-    const error = await res.json();
-    alert("❌ Error: " + error.message);
+    if (res.ok) {
+      alert("✅ Review submitted!");
+      document.getElementById("review-form").reset();
+      loadReviews(); // refresh
+    } else {
+      const error = await res.json();
+      alert("❌ Error: " + error.message);
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    alert("❌ Something went wrong!");
   }
 });
+
 function formatDate(isoString) {
   const date = new Date(isoString);
   return date.toLocaleDateString("en-IN", {
@@ -219,40 +221,38 @@ function formatDate(isoString) {
 }
 
 async function loadReviews() {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*`, {
-    headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+  try {
+    const res = await fetch("/api/reviews");
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch reviews.");
     }
-  });
 
-  const reviews = await res.json();
-  const container = document.getElementById("review-slider"); // or review-list if that's the container
-  container.innerHTML = "";
+    const reviews = await res.json();
+    const container = document.getElementById("review-slider"); // or review-list if that's the container
+    container.innerHTML = "";
 
-  reviews.reverse().forEach(review => {
-    const div = document.createElement("div");
-    div.className = "review";
-  
-    // Format the date and time from the `created_at` field
-    const createdAt = new Date(review.created_at);
-    const formattedDate = createdAt.toLocaleString('en-US', {
-      dateStyle: 'medium',
-      timeStyle: 'short'
+    reviews.reverse().forEach(review => {
+      const div = document.createElement("div");
+      div.className = "review";
+
+      const createdAt = new Date(review.created_at);
+      const formattedDate = createdAt.toLocaleString('en-US', {
+        dateStyle: 'medium',
+        timeStyle: 'short'
+      });
+
+      div.innerHTML = `
+        <strong>${review.name}</strong>
+        <p>${review.text}</p>
+        <small style="color:#ccc;font-size:12px;display:block;margin-top:10px;">🕒 ${formattedDate}</small>
+      `;
+
+      container.appendChild(div);
     });
-  
-    div.innerHTML = `
-      <strong>${review.name}</strong>
-      <p>${review.text}</p>
-      <small style="color:#ccc;font-size:12px;display:block;margin:2px 0; margin-top:10px;">🕒 ${formattedDate}</small>
-      
-    `;
-  
-    container.appendChild(div);
-  });
-  
+  } catch (err) {
+    console.error("Error loading reviews:", err);
+  }
 }
 
-
 loadReviews();
-
