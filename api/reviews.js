@@ -1,35 +1,50 @@
 export default async function handler(req, res) {
-  const SUPABASE_URL = "https://ojfxbnavshemmsbbprem.supabase.co";
-  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qZnhibmF2c2hlbW1zYmJwcmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQyNjEwNjIsImV4cCI6MjA1OTgzNzA2Mn0.jCCyX9Kj2IHUglYC3qE4Oa8N5rDWjYl5247GlnFVrVo"; // full key here
+  const SUPABASE_URL = process.env.SUPABASE_URL;
+  const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
-  if (req.method === "GET") {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*`, {
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`
-      }
-    });
-    const data = await response.json();
-    return res.status(200).json(data);
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+    return res.status(500).json({ error: "Supabase credentials not set." });
   }
 
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     const { name, text } = req.body;
 
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
-      method: "POST",
-      headers: {
-        apikey: SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-        "Content-Type": "application/json",
-        Prefer: "return=representation"
-      },
-      body: JSON.stringify({ name, text })
-    });
+    if (!name || !text) {
+      return res.status(400).json({ error: "Name and text are required." });
+    }
 
-    const data = await response.json();
-    return res.status(response.status).json(data);
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=representation"
+        },
+        body: JSON.stringify({ name, text })
+      });
+
+      const data = await response.json();
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to submit review." });
+    }
   }
 
-  res.status(405).json({ message: "Method not allowed" });
+  if (req.method === 'GET') {
+    try {
+      const response = await fetch(`${SUPABASE_URL}/rest/v1/reviews?select=*`, {
+        headers: {
+          apikey: SUPABASE_ANON_KEY,
+          Authorization: `Bearer ${SUPABASE_ANON_KEY}`
+        }
+      });
+
+      const data = await response.json();
+      res.status(200).json(data);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch reviews." });
+    }
+  }
 }

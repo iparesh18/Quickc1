@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // form
 
 
+// Submit Review Form Handler
 document.getElementById("review-form").addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -184,7 +185,7 @@ document.getElementById("review-form").addEventListener("submit", async (e) => {
   const text = document.getElementById("review-text").value.trim();
 
   if (!name || !text) {
-    alert("Please fill out all fields.");
+    alert("⚠️ Please fill out all fields.");
     return;
   }
 
@@ -200,17 +201,18 @@ document.getElementById("review-form").addEventListener("submit", async (e) => {
     if (res.ok) {
       alert("✅ Review submitted!");
       document.getElementById("review-form").reset();
-      loadReviews(); // refresh
+      loadReviews(); // Refresh the list
     } else {
       const error = await res.json();
-      alert("❌ Error: " + error.message);
+      alert("❌ Error: " + (error?.error || "Unable to submit review."));
     }
   } catch (err) {
-    console.error("Error:", err);
+    console.error("❌ Network error:", err);
     alert("❌ Something went wrong!");
   }
 });
 
+// Format ISO Date
 function formatDate(isoString) {
   const date = new Date(isoString);
   return date.toLocaleDateString("en-IN", {
@@ -220,6 +222,7 @@ function formatDate(isoString) {
   });
 }
 
+// Load Reviews
 async function loadReviews() {
   try {
     const res = await fetch("/api/reviews");
@@ -229,19 +232,18 @@ async function loadReviews() {
     }
 
     const reviews = await res.json();
-    const container = document.getElementById("review-slider"); // or review-list if that's the container
+    const container = document.getElementById("review-slider");
     container.innerHTML = "";
 
     reviews.reverse().forEach(review => {
-      const div = document.createElement("div");
-      div.className = "review";
-
       const createdAt = new Date(review.created_at);
       const formattedDate = createdAt.toLocaleString('en-US', {
         dateStyle: 'medium',
         timeStyle: 'short'
       });
 
+      const div = document.createElement("div");
+      div.className = "review";
       div.innerHTML = `
         <strong>${review.name}</strong>
         <p>${review.text}</p>
@@ -255,4 +257,5 @@ async function loadReviews() {
   }
 }
 
+// Initial Load
 loadReviews();
