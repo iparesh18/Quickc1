@@ -1,0 +1,445 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./assets/fonts/Gilroy-ExtraBold.otf') format('opentype');
+    // font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Gilroy';
+    src: url('./assets/fonts/Gilroy-Light.otf') format('opentype');
+    font-weight: 300;
+    font-style: normal;
+  
+}
+
+@font-face {
+    font-family: 'Berlys';
+    src: url('./assets/fonts/Berlys.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Gilroy";
+    background-color: #000000;
+    color: #000000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    
+  }
+
+  
+  /* Dark Theme */
+  body.dark-theme {
+    background-color: #000;
+    color: #fff;
+  }
+  
+  /* Light Theme */
+  body.light-theme {
+    background-color: #ffffff;
+    color: #000;
+    ul{
+        color: #000;
+    }
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  main{
+    width: 100%;
+  }
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem !important;
+    padding: 1rem 1.5rem;
+    background-color: #000000;
+    position: relative;
+    z-index: 1000;
+  }
+  
+  .logo {
+ 
+    font-size: 1.4rem;
+    // font-weight: bold;
+    color: #eba254;
+  }
+  
+  /* Hamburger */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+  }
+  
+  .hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #eba254;
+    border-radius: 2px;
+    transition: 0.3s;
+  }
+  
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  
+  /* Nav Links */
+  .nav-links {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #111;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    transition: right 0.3s ease;
+    z-index: 100;
+  }
+  
+  .nav-links.open {
+    right: 0;
+  }
+  
+  .nav-links li a {
+    font-weight: 200;
+    color: #f1f1f1;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .nav-links li a:hover {
+    color: #00ffe7;
+  }
+  
+  /* Overlay */
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 900;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+  }
+  
+  .overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  #theme-toggle-btn {
+
+    // position: fixed !important;
+    bottom: 20px;
+    right: 20px;
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 1rem 1rem;
+    border-radius: 30px;
+    cursor: pointer;
+    z-index: 50;;
+
+  }
+
+  .pet-hero {
+    background: url('/assets/image/bg.jfif') no-repeat center center/cover;
+    height: 50vh;
+    // color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  
+}
+.pet-hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 62.2vh;
+    background: rgba(0, 0, 0, 0.7); /* 50% black overlay */
+    z-index: 1;
+}
+
+/* Push content above the overlay */
+.pet-hero-content {
+    position: relative;
+    z-index: 2;
+}
+h1{
+    font-size: 3rem;
+    // margin-bottom: 1rem;
+    color: #eba254;
+    font-weight: 200;
+}
+p{
+    font-size: 1.3rem;
+    // margin-bottom: 2rem;
+    color: #9ba0a8;
+    font-weight: 200;
+}
+.pet-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #eba254;
+    font-weight: 200;
+}
+
+.pet-hero p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: #9ba0a8;
+    font-weight: 200;
+}
+
+.pet-cta-buttons a {
+    background-color: #eba254;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    margin-top: 10px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    text-decoration: none;
+    font-weight: 200;
+    border: none;
+
+    cursor: pointer;
+}
+
+// .pet-cta-buttons a:hover {
+//     background-color: #FF4C3B;
+// }
+
+
+// Symtomps
+.pet-symptom-checker-page {
+    border-bottom: 1px solid #eba254;
+    padding: 40px;
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+
+.pet-symptom-checker-page textarea {
+    width: 100%;
+    height: 150px;
+    padding: 15px;
+    font-size: 1rem;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+}
+
+.pet-symptom-checker-page button {
+    background-color: #eba254;
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1rem;
+
+    border: none;
+
+    cursor: pointer;
+}
+
+#pet-response{
+    margin-top: 30px;
+    background: #eba254;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+}
+#pet-response strong {
+    font-size: 16px;
+    color: #fffefe;
+  }
+  
+  #pet-response  p {
+    font-size: 14px;
+    color: #000000 !important;
+    margin-top: 6px;
+  }
+
+  // loading 
+  .spinner {
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-left-color: #f6f6f6;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+//   VetFinder
+.pet-vet-finder {
+    text-align: center;
+    padding: 40px 20px;
+    // background: #000000;
+  }
+  
+  .pet-section-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .pet-btn {
+    background-color: #ff6f61;
+    color: white;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+//   .pet-btn:hover {
+//     background-color: #e2594f;
+//   }
+.pet-search-input {
+    padding: 10px;
+    margin-bottom: 20px;
+    width: 80%;
+    max-width: 400px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+
+  }
+  
+  .pet-helpline-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+    background: #eba254;
+    color: #000;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    p{
+        color: #000;
+    }
+    a{
+        text-decoration: none;
+
+    }
+  }
+
+     .site-footer {
+        background-color: #1a1a1a;
+        color: #ccc;
+        padding: 40px 20px;
+        text-align: center;
+      }
+      
+      .footer-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        text-align: left;
+        gap: 30px;
+      }
+      
+      .footer-left h3 {
+        color: #eba254;
+        font-weight: 200;
+      }
+      
+      .footer-links ul {
+        list-style: none;
+        padding: 0;
+      }
+      
+      .footer-links a {
+        color: #ccc;
+        text-decoration: none;
+        display: block;
+        margin: 5px 0;
+      }
+      
+      .footer-links a:hover {
+        text-decoration: underline;
+      }
+      
+      .footer-contact h6 {
+        margin: 5px 0;
+        font-size: 1rem;
+      }
+      
+      .footer-bottom {
+        margin-top: 30px;
+        border-top: 1px solid #333;
+        padding-top: 10px;
+        font-size: 14px;
+        color: #888;
+      }
+      
+  
+      @media screen and (min-width: 1080px) {
+        .hamburger {
+          display: none;
+        }
+      
+        .nav-links {
+          position: static;
+          height: auto;
+          width: auto;
+          flex-direction: row;
+          background: none;
+          padding: 0;
+          gap: 1.5rem;
+        }
+      
+        .overlay {
+          display: none;
+        }
+      
+        .hero {
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left;
+          padding: 3rem 5rem;
+        }
+      
+        .cta-buttons {
+          flex-direction: row;
+        }
+      }

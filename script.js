@@ -259,3 +259,83 @@ async function loadReviews() {
 
 // Initial Load
 loadReviews();
+
+
+// Pet 
+async function checkAnimalSymptoms() {
+  const symptoms = document.getElementById('pet-symptoms').value;
+  const responseDiv = document.getElementById('pet-response');
+
+  // Show spinner
+  responseDiv.innerHTML = `<div class="spinner"></div>`;
+
+  try {
+      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer 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'
+          },
+          body: JSON.stringify({
+              model: "mistralai/mistral-7b-instruct",
+              messages: [
+                  { role: "system", content: "You are a helpful veterinary assistant." },
+                  { role: "user", content: `What could be the issue if an animal shows these symptoms: ${symptoms}` }
+              ]
+          })
+      });
+
+      const data = await res.json();
+      const reply = data.choices[0].message.content;
+
+      const formattedReply =
+          "<ul>" +
+          reply
+            .replace(/^## (.*?)$/gm, "<h3>$1</h3>")
+            .replace(/^\* \*\*(.*?)\*\*: (.*?)$/gm, "<li><strong>$1:</strong> $2</li>")
+            .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+            .replace(/• /g, "<li>")
+            .replace(/\n{2,}/g, "</ul><br><ul>")
+            .replace(/\n/g, "")
+            .replace(/<ul><\/ul>/g, "") +
+          "</ul>";
+
+      const disclaimer = `
+          <br>
+          <strong style="color: red;">🐾 Note:</strong> 
+          <span style="color: #fff; font-weight:200;">
+              This is a preliminary suggestion and not a substitute for professional veterinary advice. Always consult a licensed vet for accurate diagnosis.
+          </span>
+      `;
+
+      responseDiv.innerHTML = formattedReply + disclaimer;
+
+  } catch (error) {
+      responseDiv.innerHTML = "Something went wrong. Please try again.";
+      console.error(error);
+  }
+}
+
+
+function findVetNearMe() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+
+        // Redirect to Google Maps with vet search near the user's location
+        const query = `https://www.google.com/maps?q=vets+near+me&ll=${lat},${lng}&z=15`;
+        window.open(query, "_blank"); // Open in a new tab
+      },
+      (error) => {
+        alert("Unable to retrieve your location. Showing a default location.");
+        const fallbackLocation = "Balaghat"; // Default fallback location
+        const query = `https://www.google.com/maps?q=vets+near+me&near=${fallbackLocation}`;
+        window.open(query, "_blank"); // Open in a new tab
+      }
+    );
+  } else {
+    alert("Geolocation not supported by your browser.");
+  }
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuickClinic</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <main>
+           <!--Nav bar -->
+      <header>
+        <nav class="navbar">
+          <h1 class="logo" style="font-weight: 200">QuickClinic</h1>
+          <button id="theme-toggle-btn">🌓 Toggle Theme</button>
+
+          <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href=" index.html#Sym">Symptoms Checker</a></li>
+            <li><a href=" index.html#find-doctor">Find Doctor</a></li>
+            <li><a href="animal-care.html">Voice for the voiceless</a></li>
+            <li><a href="index.html#about">About</a></li>
+          </ul>
+        </nav>
+        <div class="overlay" id="overlay"></div>
+      </header>
+      <!-- Hero -->
+      <section class="pet-hero">
+        <div class="pet-hero-content">
+            <h1>Voice for the Voiceless</h1>
+            <p>Help us give a voice to those who can't speak. Use QuickClinic to diagnose and care for animals in need.</p>
+            <div class="pet-cta-buttons">
+                <a href="#animal-symptom-checker" class="pet-cta-button">Start Animal Diagnosis</a>
+            </div>
+        </div>
+    </section>
+    <!-- Pawnosis -->
+    <section class="pet-symptom-checker-page" id="animal-symptom-checker">
+        <h1>Pawnosis</h1>
+        <p style="margin-top: 20px;">Enter symptoms your pet is showing and we'll provide a possible diagnosis suggestion.</p>
+
+        <textarea id="pet-symptoms" placeholder="e.g., my dog is limping, not eating, and has watery eyes..."></textarea>
+        <button onclick="checkAnimalSymptoms()">Check Symptoms</button>
+
+        <div id="pet-response"></div>
+    </section>
+    <!-- VetFinder -->
+    <section id="vet-finder" class="pet-vet-finder">
+        <h1 style="font-weight: 200; font-size: 3rem;" class="pet-section-title">Find a Vet Near You🐾 </h1>
+        <div class="doctor-map">
+            <iframe
+              id="map-frame"
+              width="100%"
+              height="300"
+              style="border: 0; margin-top: 20px"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+          <button style="    background-color: #eba254;
+          color: #fff;
+          padding: 0.75rem 1.5rem;
+          border-radius: 30px;
+          margin-top: 30px;
+          padding: 12px 25px;
+          font-size: 1rem;
+      
+          border: none;
+      
+          cursor: pointer;" onclick="findVetNearMe()" class="pet-btn">🔍 Find Vets Near Me</button>
+      </section>
+      <!-- Search -->
+      <section id="animal-helplines" class="pet-helpline-section" style="display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center;">
+        <h1 style="font-size: 2.3rem; font-weight: 200; padding: 0px 15px;" class="pet-section-title">Search Animal Helplines Across India</h1>
+        <input
+          type="text"
+          id="search-state"
+          placeholder="Enter your state (e.g., Maharashtra)"
+          class="pet-search-input"
+        />
+        <div id="helpline-results" class="pet-helpline-results"></div>
+
+      </section>
+      <!-- Footer -->
+            <footer class="site-footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <h3>QuickClinic 🏥</h3>
+            <h6 style="font-size: .9rem;">
+              Your smart assistant for finding doctors, understanding symptoms,
+              and locating nearby pharmacies.
+            </h6>
+          </div>
+
+          <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+              <li><a href="#Sym">Symptom Checker</a></li>
+              <li><a href="#find-doctor">Find Doctors</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h4>Contact</h4>
+            <h6>Github : iparesh18</h6>
+            <h6>Balaghat, MP - India</h6>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <h6 style="font-size: .9rem;">© 2025 QuickClinic. All rights reserved.</h6>
+        </div>
+      </footer>
+
+    </main>
+    <script src="script.js"></script>
+    <script src="helplines.js"></script>
+<script src="search.js"></script>
+
+</body>
+</html>
