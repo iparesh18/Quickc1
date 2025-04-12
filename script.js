@@ -270,11 +270,11 @@ async function checkAnimalSymptoms() {
   responseDiv.innerHTML = `<div class="spinner"></div>`;
 
   try {
-      const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      const res = await fetch('/api/vet', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
-              'Authorization': 'Bearer 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'
+        
           },
           body: JSON.stringify({
               model: "mistralai/mistral-7b-instruct",
